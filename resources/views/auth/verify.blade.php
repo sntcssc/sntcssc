@@ -1,28 +1,65 @@
-@extends('layouts.app')
-
+@extends('layouts.master-auth')
+@section('title')
+    Email Verification
+@endsection
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Verify Your Email Address') }}</div>
 
-                <div class="card-body">
-                    @if (session('resent'))
-                        <div class="alert alert-success" role="alert">
-                            {{ __('A fresh verification link has been sent to your email address.') }}
+    <div class="w-100">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="auth-card mx-lg-3">
+                        <div class="card border-0 mb-0">
+                            <div class="card-header bg-primary border-0">
+                                <div class="row">
+                                    <div class="col-lg-4 col-3">
+                                        <img src="{{ URL::asset('build/images/auth/img-1.png') }}" alt="" class="img-fluid">
+                                    </div>
+                                    <div class="col-lg-8 col-9">
+                                        <h1 class="text-white lh-base fw-lighter">Verify Your Email</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body text-center">
+                                @if (session('resent'))
+                                    <div class="alert alert-success" role="alert">
+                                        {{ __('A fresh verification link has been sent to your email address.') }}
+                                    </div>
+                                @endif
+                                <p class="text-muted fs-15">Please check your email and confirm it</p>
+
+                                <div class="p-2">
+                                    <form class="d-inline" method="POST" action="">
+                                        @csrf
+                                        <button type="submit"
+                                            class="btn btn-primary w-100">{{ __('click here to request another') }}</button>
+                                    </form><!-- end form -->
+                                </div>
+                            </div>
                         </div>
-                    @endif
+                    </div>
+                </div>
+                <!--end col-->
+            </div>
+            <!--end row-->
+        </div>
+        <!--end container-->
 
-                    {{ __('Before proceeding, please check your email for a verification link.') }}
-                    {{ __('If you did not receive the email') }},
-                    <form class="d-inline" method="POST" action="{{ route('verification.resend') }}">
-                        @csrf
-                        <button type="submit" class="btn btn-link p-0 m-0 align-baseline">{{ __('click here to request another') }}</button>.
-                    </form>
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <p class="mb-0 text-muted">©
+                                <script>
+                                    document.write(new Date().getFullYear())
+                                </script> Example. Crafted with <i class="mdi mdi-heart text-danger"></i> by
+                                SNTCSSC
+                            </p>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </footer>
     </div>
-</div>
 @endsection

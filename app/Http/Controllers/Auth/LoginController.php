@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Auth;
+use Flasher\Prime\FlasherInterface;
 
 class LoginController extends Controller
 {
@@ -25,7 +27,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/admin/dashboard';
 
     /**
      * Create a new controller instance.
@@ -34,7 +36,20 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:web')->except('logout');
         $this->middleware('auth')->only('logout');
+    }
+
+
+    public function logout(){
+
+        Auth::guard('web')->logout();
+        
+    flash()
+        ->option('position', 'bottom-right')
+        ->option('timeout', 3000)
+        ->success('auth_logged_out');
+
+        return redirect()->route('login')->with('success', __('auth_logged_out'));
     }
 }
