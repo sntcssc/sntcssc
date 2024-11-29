@@ -15,6 +15,20 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 
 
+Error:
+    ```
+        @php artisan package:discover --ansi BadMethodCallException Method Illuminate\Foundation\Application::share does not exist. at vendor\laravel\framework\src\Illuminate\Macroable\Traits\Macroable.php:115
+    ```
+Solution:
+    ```
+    I am using laravel 11 .After running following steps everything seems to be fine.
+
+    Go to composer.json
+    Update "maatwebsite/excel": "^3.1",
+    Run composer update
+    ```
+
+
 
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>

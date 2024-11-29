@@ -6,4 +6,5 @@ return [
     Yajra\DataTables\DataTablesServiceProvider::class,
     Milon\Barcode\BarcodeServiceProvider::class,
     Barryvdh\DomPDF\ServiceProvider::class,
+    Maatwebsite\Excel\ExcelServiceProvider::class,
 ];
